@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Features Page</title>
+ <style>
+   body {
+     margin: 0;
+     padding: 0;
+     font-family: Arial, sans-serif;
+   }
+
+   /* CSS code for the nav bars */
+
+   .header {
+     background-color: #470b0b00;
+     padding: 20px;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1;
+     font-size: 18px;
+   }
+
+   .header .hamburger {
+     display: inline-block;
+     margin-right: 10px;
+     cursor: pointer;
+   }
+
+   .header .hamburger span {
+     display: block;
+     width: 25px;
+     height: 3px;
+     background-color: rgb(100, 103, 147);
+     margin-bottom: 5px;
+   }
+
+   .sidebar {
+     position: fixed;
+     top: 0;
+     left: -250px;
+     width: 250px;
+     height: 100%;
+     background-color: rgba(231, 222, 222, 0);
+     color: rgb(100, 103, 147);
+     padding: 20px;
+     transition: left 0.3s ease;
+     font-size: 30px;
+   }
+
+   .sidebar ul {
+     list-style-type: none;
+     padding: 5px;
+     margin: 28px;
+   }
+
+   .sidebar.active {
+     left: 0;
+   }
+
+   .tab-bar {
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     background-color: rgb(235, 232, 232);
+     color: #fff;
+     height: 60px;
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1;
+   }
+
+   .tab-item {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 10px;
+   }
+
+   .tab-item img {
+     display: block;
+     width: 60px;
+     height: 60px;
+     margin-bottom: 5px;
+   }
+
+   .tab-item span {
+     font-size: 14px;
+     color: #f1f0f0;
+   }
+
+   /* Centered image */
+   .plane-image {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 10px;
+   }
+
+   .plane-image img {
+     max-width: 60px;
+     max-height: 60px;
+   }
+
+   /* Centered heading and paragraph */
+   .centered-content {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     margin-top: 3px; /* Adjust spacing as needed */
+     margin-bottom: 3px; /* Adjust spacing as needed */
+   }
+
+   .centered-content h1 {
+     font-size: 20px; /* Adjust font size as needed */
+   }
+
+   .centered-content p {
+     font-size: 15px; /* Adjust font size as needed */
+   }
+
+   /* search bar */
+   .search-container {
+        text-align: center;
+        margin-top: -6px;
+        margin-bottom: -8px;
+    }
+        
+    .search-container input[type=text] {
+        padding: 10px;
+        width: 300px;
+        font-size: 16px;
+    }
+        
+    .search-container button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+
+    /* grid */
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 3px;
+        margin-top: 20px;
+        margin-left: 140px; 
+        margin-right: 10px; 
+        justify-content: center;
+    }
+
+    .grid-item {
+        border: 4px solid #ccc; /* Add border to the grid items */
+        border-radius: 10px;
+        padding: 8px;
+        text-align: center;
+        max-width: 150px; /* Adjust item width as needed */
+        max-height: 150px; /* Adjust item height as needed */
+    }
+
+    .grid-item img {
+        max-width: 100%; /* Make images inside grid items responsive */
+        max-height: 100%;
+    }
+
+    /* Highlighted style */
+    .highlight {
+        background-color: rgba(5, 17, 96, 0.753);
+        font-weight: bold;
+    }
+
+    /* Responsive styles for mobile devices */
+    @media (max-width: 768px) {
+        .header {
+            font-size: 14px;
+        }
+    }
+ </style>
+</head>
+<body>
+ <div class="header">
+   <div class="hamburger" onclick="toggleSidebar()">
+     <span></span>
+     <span></span>
+     <span></span>
+   </div>
+ </div>
+
+ <div class="sidebar" id="sidebar">
+   <ul>
+     <li>Settings</li>
+   </ul>
+ </div>
+
+ <div class="plane-image">
+   <img src="./images/plane.png" alt="Plane Image">
+ </div>
+
+ <div class="centered-content">
+   <h1 style="font-size: 24px; margin-bottom: 1px;">Hello, User</h1>
+   <p style="font-size: 15px; margin-bottom: 15px">Your one-stop destination for all your flight-related assistants.</p>
+ </div>
+
+ <!--search-->
+ <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search..." oninput="performSearch()">
+    <button type="button" onclick="resetSearch()">Reset</button>
+</div>
+
+ <!--thegrid-->
+
+ <div class="grid-container">
+    <div class="grid-item">
+        <a href="flighttracker.html"><div class="image-wrapper"><img src="./images/ftimg.png" alt="Flight Tracker" id="image1"></div></a>
+    </div>
+    <div class="grid-item">
+      <a href="baggagetracker.html"><div class="image-wrapper"><img src="./images/bgimg.png" alt="Baggage Tracker" id="image2"></div></a>
+    </div>
+    <div class="grid-item">
+      <a href="flightstat.html"><div class="image-wrapper"><img src="./images/fsimg.png" alt="Flight Statistics" id="image3"></div></a>
+    </div>
+    <div class="grid-item">
+      <a href="i&l.html"><div class="image-wrapper"><img src="./images/i&l.png" alt="Itinerary & Logistics" id="image4"></div></a>
+    </div>
+    <div class="grid-item">
+      <a href="airnav.html"><div class="image-wrapper"><img src="./images/animg.png" alt="Navigator" id="image5"></div></a>
+    </div>
+    <div class="grid-item">
+      <a href="translator.html"><div class="image-wrapper"><img src="./images/translatorimg.png" alt="Translator" id="image6"></div></a>
+    </div>
+</div>
+
+<br><br><br><br><br>
+
+
+ <!--bottom nav bar-->
+ <div class="tab-bar">
+  <div class="tab-item">
+    <a href="profile.html"><img src="./images/profile.png" alt="Feature 1" style="width: 25px; height: 30px;"></a>
+    <span style="font-size: 10px; color: #070000;">Profile</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="featurespg.html"><img src="./images/home.png" alt="Feature 2" style="width: 50px; height: 40px;"></a>
+    <span style="font-size: 10px; color: #0e0101;">Home</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="bookFlight.html"> <img src="./images/planedo.svg.png" alt="Feature 3" style="width: 45px; height: 36px;"></a>
+    <span style="font-size: 10px; color: #070000;">Book Flight</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="chatbot.html"><img src="./images/chat.png" alt="Feature 4" style="width: 47px; height: 38px;"></a>
+    <span style="font-size: 10px; color: #070000;">Chatbot</span> <!-- Update font size -->
+  </div>
+</div>
+
+ <script>
+   function toggleSidebar() {
+     var sidebar = document.getElementById("sidebar");
+     sidebar.classList.toggle("active");
+   }
+
+   // Search functions
+   var originalHTML = {};
+
+   function performSearch() {
+     var searchTerm = document.getElementById("search-input").value.toLowerCase();
+     var items = document.querySelectorAll(".grid-item");
+
+     // Reset previously highlighted items
+     resetItems();
+
+     if (searchTerm === "") {
+       return; // No search term, no need to highlight anything
+     }
+
+     for (var i = 0; i < items.length; i++) {
+       var item = items[i];
+       var altText = item.querySelector("img").alt.toLowerCase();
+
+       if (altText.includes(searchTerm)) {
+         highlightItem(item);
+       }
+     }
+   }
+
+   function highlightItem(item) {
+     item.classList.add("highlight");
+   }
+
+   function resetItems() {
+     var highlightedItems = document.querySelectorAll(".grid-item.highlight");
+
+     for (var i = 0; i < highlightedItems.length; i++) {
+       var item = highlightedItems[i];
+       item.classList.remove("highlight");
+     }
+   }
+
+   function resetSearch() {
+     document.getElementById("search-input").value = "";
+     resetItems();
+   }
+ </script>
+</body>
+</html>

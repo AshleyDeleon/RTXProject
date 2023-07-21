@@ -1,0 +1,153 @@
+<html>
+<head>
+  <title>Flight Selection</title>
+  <style>
+    /* CSS styling for the flight selection page */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    .flight-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .flight-card:hover {
+      background-color: #f5f5f5;
+      cursor: pointer;
+    }
+    
+    .flight-details {
+      flex: 1;
+      padding-right: 10px;
+    }
+    
+    .flight-price {
+      font-weight: bold;
+    }
+    
+    .flight-locations {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    
+    .location-container {
+      display: flex;
+      align-items: center;
+      margin: 0 10px;
+    }
+    
+    .location-label {
+      margin-right: 5px;
+    }
+    
+    .flight-class-tabs {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    
+    .flight-class-tab {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    
+    .flight-class-tab.active {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Flight Selection</h1>
+  
+  <div class="flight-locations">
+    <div class="location-container">
+      <span class="location-label">Departure:</span>
+      <select class="location-dropdown" id="departure-dropdown">
+        <option value="New York">New York</option>
+        <option value="London">London</option>
+        <option value="Sydney">Sydney</option>
+      </select>
+    </div>
+    
+    <div class="location-container">
+      <span class="location-label">Destination:</span>
+      <select class="location-dropdown" id="destination-dropdown">
+        <option value="Los Angeles">Los Angeles</option>
+        <option value="Paris">Paris</option>
+        <option value="Tokyo">Tokyo</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="flight-card">
+    <div class="flight-details">
+      <h2>Flight to Los Angeles</h2>
+      <p>Departure: New York</p>
+      <p>Destination: Los Angeles</p>
+      <p>Departure Time: 10:00 AM</p>
+      <p>Arrival Time: 1:00 PM</p>
+    </div>
+    <div class="flight-price">$200</div>
+    <div class="flight-class-tabs">
+      <div class="flight-class-tab active" onclick="selectFlightClass(this, 'economy')">Economy</div>
+      <div class="flight-class-tab" onclick="selectFlightClass(this, 'business')">Business</div>
+      <div class="flight-class-tab" onclick="selectFlightClass(this, 'first')">First Class</div>
+    </div>
+  </div>
+  
+  <div class="flight-card">
+    <div class="flight-details">
+      <h2>Flight to Paris</h2>
+      <p>Departure: London</p>
+      <p>Destination: Paris</p>
+      <p>Departure Time: 2:00 PM</p>
+      <p>Arrival Time: 4:00 PM</p>
+    </div>
+    <div class="flight-price">$150</div>
+    <div class="flight-class-tabs">
+      <div class="flight-class-tab active" onclick="selectFlightClass(this, 'economy')">Economy</div>
+      <div class="flight-class-tab" onclick="selectFlightClass(this, 'business')">Business</div>
+      <div class="flight-class-tab" onclick="selectFlightClass(this, 'first')">First Class</div>
+    </div>
+  </div>
+  
+  <div class="flight-card">
+    <div class="flight-details">
+      <h2>Flight to Tokyo</h2>
+      <p>Departure: Sydney</p>
+      <p>Destination: Tokyo</p>
+      <p>Departure Time: 9:00 AM</p>
+      <p>Arrival Time: 6:00 PM</p>
+    </div>
+    <div class="flight-price">$400</div>
+    <div class="flight-class-tabs">
+      <div class="flight-class-tab active" onclick="selectFlightClass(this, 'economy')">Economy</div>
+      <div class="flight-class-tab" onclick="selectFlightClass(this, 'business')">Business</div>
+      <div class="flight-class-tab" onclick="selectFlightClass(this, 'first')">First Class</div>
+    </div>
+  </div>
+  
+  <script>
+    function selectFlightClass(tab, flightClass) {
+      var flightClassTabs = tab.parentElement.getElementsByClassName('flight-class-tab');
+      for (var i = 0; i < flightClassTabs.length; i++) {
+        flightClassTabs[i].classList.remove('active');
+      }
+      tab.classList.add('active');
+    }
+  </script>
+</body>
+</html>

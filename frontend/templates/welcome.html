@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Welcome Page</title>
+ <style>
+   body {
+     margin: 0;
+     padding: 0;
+     font-family: Arial, sans-serif;
+   }
+
+    .content {
+      padding: 20px;
+      color: #333;
+    }
+
+    .content p {
+      margin-top: 0;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+   
+
+    .else {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10vh;
+    }
+
+    .else img {
+      display: block;
+      margin: auto; /* Center the image horizontally */
+    }
+
+    .header {
+     background-color: #470b0b00;
+     padding: 20px;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1;
+     font-size: 18px;
+   }
+
+
+   .header .hamburger {
+     display: inline-block;
+     margin-right: 10px;
+     cursor: pointer;
+   }
+
+
+   .header .hamburger span {
+     display: block;
+     width: 25px;
+     height: 3px;
+     background-color: rgb(100, 103, 147);
+     margin-bottom: 5px;
+
+   }
+
+
+   .sidebar {
+     position: fixed;
+     top: 0;
+     left: -250px;
+     width: 250px;
+     height: 100%;
+     background-color: rgba(231, 222, 222, 0);
+     color: rgb(100, 103, 147); /*font color*/
+     padding: 20px;
+     transition: left 0.3s ease;
+     font-size: 30px; /* Increase font size */
+   }
+
+   .sidebar ul {
+     list-style-type: none; /* Remove bullet points */
+     padding: 5px;
+     margin: 28px;
+   }
+
+
+   .sidebar.active {
+     left: 0;
+   }
+
+
+
+
+   .tab-bar {
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     background-color: rgb(235, 232, 232);
+     color: #fff;
+     height: 60px;
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1;
+   }
+
+
+   .tab-item {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 10px;
+   }
+
+
+   .tab-item img {
+     display: block;
+     width: 60px; /* Updated size of the images */
+     height: 60px; /* Updated size of the images */
+     margin-bottom: 5px;
+   }
+
+
+   .tab-item span {
+     font-size: 14px;
+     color: #f1f0f0; /* Updated font color */
+   }
+
+   .image-container img {
+      width: 100%; /* Custom width */
+      height: 800px; /* Custom height */
+    }
+
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+    }
+
+    
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    .button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      background-color: #f2f2f2;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 48vh;
+   }
+
+   .message-box {
+     width: 900px;
+     background-color: #060669;
+     border: 1px solid rgb(0, 0, 0);
+     border-radius: 4px;
+     padding: 90px;
+   }
+
+   .custom-box {
+     padding: 40px;
+     margin: 30px;
+   }
+
+   .message {
+     margin-bottom: 10px;
+     padding: 30px;
+     background-color: #fff;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+   }
+
+   .message p {
+     margin: 0;
+     padding: 0;
+   }
+
+     /* Media Query for Mobile Devices */
+     @media only screen and (max-width: 600px) {
+      .bottom-text {
+        font-size: 14px;
+      }
+    }
+ </style>
+</head>
+<body>
+ <div class="header">
+   <div class="hamburger" onclick="toggleSidebar()">
+     <span></span>
+     <span></span>
+     <span></span>
+   </div>
+ </div>
+
+ <div class="sidebar" id="sidebar">
+   <ul>
+     <li>Settings</li>
+    
+   </ul>
+ </div>
+ <div class="image-container">
+    <img src="./images/Screen Shot 2023-07-11 at 1.51.53 PM.png" alt="Custom Image">
+    <div class="overlay">
+        <h1 style="line-height: 2;">Welcome to AviaTrack!</h1>
+    
+    </div>
+    
+  </div>
+
+    <div class="button-container">
+        <button id="weather-button" class="button" onclick="updateWeather()">Weather</button>
+        <button id="time-button" class="button" onclick="updateTime()">Click to get the time</button>
+        <button class="button">Altitude</button>
+      </div>
+    
+
+
+
+  <div class="content">
+    <h3>Fun Trips for You!</h3>
+  <img src="./images/sect.png" alt="Feature 4" style="width: 100%; height: 370px;">
+    <h3>Fun Trips for You!</h3>
+  </div>
+
+
+  <div class="else">  
+    <img src="./images/map.png" alt="Centered Image">
+  </div>
+
+<div class="content">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <h3>Message Center</h3>
+  </div>
+
+
+
+  <div class="container">
+   <div class="message-box custom-box">
+     <div class="message">
+       <p>Your Plane is undergoing routine check up!</p>
+     </div>
+     <div class="message">
+       <p>The weather forecasts suggest possible delays. Please make sure to routinely check your app for any possible notifications!</p>
+     </div>
+     <div class="message">
+       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+     </div>
+   </div>
+ </div>
+ <br><br><br><br><br><br>
+
+
+ <div class="tab-bar">
+  <div class="tab-item">
+    <a href="profile.html"><img src="./images/profile.png" alt="Feature 1" style="width: 25px; height: 30px;"></a>
+    <span style="font-size: 10px; color: #070000;">Profile</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="featurespg.html"><img src="./images/home.png" alt="Feature 2" style="width: 50px; height: 40px;"></a>
+    <span style="font-size: 10px; color: #0e0101;">Home</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="bookFlight.html"> <img src="./images/planedo.svg.png" alt="Feature 3" style="width: 45px; height: 36px;"></a>
+    <span style="font-size: 10px; color: #070000;">Book Flight</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="chatbot.html"><img src="./images/chat.png" alt="Feature 4" style="width: 47px; height: 38px;"></a>
+    <span style="font-size: 10px; color: #070000;">Chatbot</span> <!-- Update font size -->
+  </div>
+</div>
+
+
+
+
+
+ <script>
+   function toggleSidebar() {
+     var sidebar = document.getElementById("sidebar");
+     sidebar.classList.toggle("active");
+
+   }
+     /*function viewWeather() {
+      var apiKey = '42b180aebe7545eb6525008f43554357'; // API key
+      var city = 'London'; //city
+x
+      var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          var weatherData = data.weather[0].description; //  weather description?
+          alert("The weather is: " + weatherData);
+        })
+        .catch(error => {
+          console.log(error);
+          alert("Failed to fetch weather data.");
+        });
+    }*/
+    function updateTime() {
+      var now = new Date();
+      var time = now.toLocaleTimeString();
+      document.getElementById("time-button").textContent = time;
+    }
+
+    
+
+   
+ </script>
+</body>
+</html>

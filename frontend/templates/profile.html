@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Profile</title>
+ <style>
+   body {
+     margin: 0;
+     padding: 0;
+     font-family: Arial, sans-serif;
+   }
+
+   /* CSS code for the top nav bar */
+
+   .header {
+     background-color: #470b0b00;
+     padding: 20px;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1;
+     font-size: 18px;
+   }
+
+   .header .hamburger {
+     display: inline-block;
+     margin-right: 10px;
+     cursor: pointer;
+   }
+
+   .header .hamburger span {
+     display: block;
+     width: 25px;
+     height: 3px;
+     background-color: rgb(100, 103, 147);
+     margin-bottom: 5px;
+   }
+
+   .sidebar {
+     position: fixed;
+     top: 0;
+     left: -250px;
+     width: 250px;
+     height: 100%;
+     background-color: rgba(231, 222, 222, 0);
+     color: rgb(100, 103, 147);
+     padding: 20px;
+     transition: left 0.3s ease;
+     font-size: 30px;
+   }
+
+   .sidebar ul {
+     list-style-type: none;
+     padding: 5px;
+     margin: 28px;
+   }
+
+   .sidebar.active {
+     left: 0;
+   }
+
+   /* CSS code for the nav bar with 4 features */
+
+   .tab-bar {
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     background-color: rgb(235, 232, 232);
+     color: #fff;
+     height: 60px;
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1;
+   }
+
+   .tab-item {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 10px;
+   }
+
+   .tab-item img {
+     display: block;
+     width: 60px;
+     height: 60px;
+     margin-bottom: 5px;
+   }
+
+   .tab-item span {
+     font-size: 14px;
+     color: #f1f0f0;
+   }
+
+   /* CSS code for horizontally stacked image and text */
+
+   .stacked-content {
+     display: flex;
+     align-items: center;
+     margin-top: 20px;
+     margin-left: 64px;
+   }
+
+   .stacked-content img {
+     max-width: 100px;
+     max-height: 100px;
+     margin-right: 10px;
+   }
+
+   /* CSS code for the blue buttons */
+
+   .button-container {
+     display: flex;
+     justify-content: center;
+     margin-top: 20px;
+   }
+
+   .blue-button {
+     background-color: rgb(11, 11, 107);
+     color: #fff;
+     padding: 10px 20px;
+     margin: 0 10px;
+     border: none;
+     border-radius: 5px;
+     font-size: 16px;
+     cursor: pointer;
+     width: 264px;
+   }
+
+   /* CSS code for the space for a sizeable image */
+
+   .image-space {
+     display: flex;
+     justify-content: center;
+     margin-top: 20px;
+   }
+
+
+
+   /* CSS code for the small plane image */
+
+   .plane-image {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 10px;
+   }
+
+   .plane-image img {
+     max-width: 60px;
+     max-height: 60px;
+   }
+ </style>
+</head>
+<body>
+ <div class="header">
+    <div class="hamburger" onclick="toggleSidebar()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+ 
+ <div class="sidebar" id="sidebar">
+   <ul>
+     <li>Settings</li>
+   </ul>
+ </div>
+
+ <!-- Small plane image -->
+ <div class="plane-image">
+   <img src="./images/plane.png" alt="Plane Image">
+ </div>
+
+
+ <!-- Horizontally stacked image and text -->
+<div class="stacked-content">
+  <img src="./images/prof2.png" alt="Image">
+  <div>
+    <h2>Welcome to AviaTrack</h2>
+    <p>Find all your information here!</p>
+  </div>
+</div>
+
+<!-- Blue buttons -->
+<div class="button-container">
+  <button class="blue-button">Upcoming Flights</button>
+  <button class="blue-button">Past Flights</button>
+</div>
+
+<!-- Space for a sizeable image -->
+<div class="image-space">
+  <img src="./images/profileimg.png" alt="Image" style="width: 530px">
+</div>
+
+<br><br><br><br>
+ <!-- Nav bar with 4 features -->
+ <div class="tab-bar">
+  <div class="tab-item">
+    <a href="profile.html"><img src="./images/profile.png" alt="Feature 1" style="width: 25px; height: 30px;"></a>
+    <span style="font-size: 10px; color: #070000;">Profile</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="featurespg.html"><img src="./images/home.png" alt="Feature 2" style="width: 50px; height: 40px;"></a>
+    <span style="font-size: 10px; color: #0e0101;">Home</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="bookFlight.html"> <img src="./images/planedo.svg.png" alt="Feature 3" style="width: 45px; height: 36px;"></a>
+    <span style="font-size: 10px; color: #070000;">Book Flight</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="chatbot.html"><img src="./images/chat.png" alt="Feature 4" style="width: 47px; height: 38px;"></a>
+    <span style="font-size: 10px; color: #070000;">Chatbot</span> <!-- Update font size -->
+  </div>
+</div>
+
+
+
+<script>
+  function toggleSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("active");
+  }
+</script>
+</body>
+</html>

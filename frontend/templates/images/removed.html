@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather and Time</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#weatherButton').click(function() {
+                var zipCode = $('#zipCode').val();
+                var countryCode = $('#countryCode').val();
+                var apiKey = '42b180aebe7545eb6525008f43554357';
+                var apiUrl = 'http://api.openweathermap.org/geo/1.0/zip?zip=' + zipCode + ',' + countryCode + '&appid=' + apiKey;
+
+                $.ajax({
+                    url: apiUrl,
+                    type: 'GET',
+                    success: function(response) {
+                        if (response.length > 0) {
+                            var cityId = response[0].id;
+                            var weatherApiUrl = 'http://api.openweathermap.org/data/2.5/weather?id=' + cityId + '&appid=' + apiKey;
+
+                            $.ajax({
+                                url: weatherApiUrl,
+                                type: 'GET',
+                                success: function(weatherResponse) {
+                                    var weatherDescription = weatherResponse.weather[0].description;
+                                    var temperature = weatherResponse.main.temp;
+
+                                    // Display the weather information
+                                    $('#weatherResult').text('Weather: ' + weatherDescription + ', Temperature: ' + temperature + 'K');
+                                },
+                                error: function() {
+                                    $('#weatherResult').text('Error retrieving weather information.');
+                                }
+                            });
+                        } else {
+                            $('#weatherResult').text('No matching location found.');
+                        }
+                    },
+                    error: function() {
+                        $('#weatherResult').text('Error retrieving location information.');
+                    }
+                });
+            });
+
+            $('#timeButton').click(function() {
+                var currentTime = new Date();
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var seconds = currentTime.getSeconds();
+                var ampm = hours >= 12 ? 'PM' : 'AM';
+
+                // Convert to 12-hour format
+                hours = hours % 12 || 12;
+
+                // Format the time to ensure leading zeros
+                hours = (hours < 10 ? "0" : "") + hours;
+                minutes = (minutes < 10 ? "0" : "") + minutes;
+                seconds = (seconds < 10 ? "0" : "") + seconds;
+
+                // Display the time
+                var timeString = hours + ":" + minutes + ":" + seconds + ' ' + ampm;
+                $('#timeResult').text('Current Time: ' + timeString);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Weather</h2>
+    <label for="zipCode">ZIP Code:</label>
+    <input type="text" id="zipCode" placeholder="Enter ZIP code">
+    <br>
+    <label for="countryCode">Country Code:</label>
+    <input type="text" id="countryCode" placeholder="Enter country code">
+    <br>
+    <button id="weatherButton">Get Weather</button>
+    <br>
+    <p id="weatherResult"></p>
+
+    <h2>Time</h2>
+    <button id="timeButton">Get Time</button>
+    <br>
+    <p id="timeResult"></p>
+</body>
+</html>

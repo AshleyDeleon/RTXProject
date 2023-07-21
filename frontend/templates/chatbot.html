@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Chatbot</title>
+<style>
+  body{
+    font-family: Arial, sans-serif;
+  }
+  .header {
+    text-align: center;
+    height: 100px;
+    width: 100%;
+    background: #1E216A;
+    color: #FFFFFF;
+    padding: 0%;
+  }
+
+  .header {
+    margin-bottom: 100%;
+  }
+
+  .footer {
+    margin-top: 100%;
+  }
+
+  .tab-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid black;
+    color: #fff;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .tab-item img {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 5px;
+  }
+
+  .tab-item span {
+    font-size: 14px;
+    color: #F1F0F0;
+  }
+
+  /* Media Query for Mobile Devices */
+  @media only screen and (max-width: 600px) {
+    .bottom-text {
+      font-size: 14px;
+    }
+  }
+
+  .chat-container {
+    border: 1px solid rgb(62, 63, 110);
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 4px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin-top: -500px;
+  }
+
+  .user-message,
+  .system-message {
+    max-width: 70%; /* Limit the width of chat bubbles to make it look like a conversation */
+    margin-bottom: 10px;
+  }
+
+  .user-message {
+    align-self: flex-end; /* Align user messages to the right */
+    background-color: #083865;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .system-message {
+    align-self: flex-start; /* Align system messages to the left */
+    background-color: rgb(222, 218, 218);
+    color: #000;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  /* Style for larger input and button */
+  input[type="text"] {
+    width: 50%; /* Adjust the width as needed */
+    padding: 15px; /* Adjust the padding as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+
+  button[type="submit"] {
+    padding: 15px 20px; /* Adjust the padding as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+    background-color: #083865;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+</style>
+</head>
+
+<body>
+<div align="center">
+  <div class="header">
+    <div class="img-a">
+      <a href="featurespg.html"><img src="Images/whitearrow.png" alt="Image" style="width: 60px; height: 25px; margin-top: 65px;"></a>
+    </div>
+  </div>
+
+  <div class="chat-container">
+    <div id="chat-messages"></div>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Enter your message...">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+  <br><br>
+
+  <div class="tab-bar">
+    <div class="tab-item">
+      <a href="profile.html"><img src="Images/uploadsymbol.png" alt="Feature 1" style="width: 40px; height: 40px; margin-top: 5px;"></a>
+    </div>
+    <div class="tab-item">
+      <a href="featurespg.html"><img src="Images/microphonesymbol.png" alt="Feature 2" style="width: 25px; height: 40px;"></a>
+    </div>
+    <div class="tab-item">
+      <a href="bookFlight.html"> <img src="Images/keyboardsymbol.png" alt="Feature 3" style="width: 40px; height: 40px; margin-top: 5px;"></a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var form = document.getElementById('chat-form');
+      var userInput = document.getElementById('user-input');
+      var chatMessages = document.getElementById('chat-messages');
+
+      form.addEventListener('submit', function(e) {
+          e.preventDefault(); // Prevent default form submission behavior
+          var userMessage = userInput.value.trim();
+
+          if (userMessage !== '') {
+              getUserResponse(userMessage);
+          }
+
+          userInput.value = '';
+          userInput.focus();
+      });
+
+      function addMessage(message, className) {
+          var messageDiv = document.createElement('div');
+          messageDiv.innerHTML = message; // Use innerHTML to interpret HTML tags
+          messageDiv.className = className + " chat-bubble"; // Add "chat-bubble" class for styling
+          chatMessages.appendChild(messageDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function getUserResponse(userMessage) {
+          addMessage(userMessage, 'user-message');
+
+          if (userMessage.toLowerCase() === 'hi') {
+              var systemMessage = "Hi! How can I help?";
+              addMessage(systemMessage, 'system-message');
+          } else if (userMessage.toLowerCase() === 'where can i track my flight?') {
+              var systemMessage = "I'm happy to help! Please navigate to <a href='flighttracker.html'>AviaTrack | FlightTracker</a>";
+              addMessage(systemMessage, 'system-message');
+          } else {
+              var systemMessage = "I'm sorry, I didn't understand your question. Can you please rephrase it?";
+              addMessage(systemMessage, 'system-message');
+          }
+      }
+  });
+</script>
+</body>
+</html>

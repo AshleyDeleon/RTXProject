@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Itinerary&Logistics</title>
+ <style>
+   body {
+     margin: 0;
+     padding: 0;
+     font-family: Arial, sans-serif;
+   }
+
+
+/* CSS code for the top nav bar */
+
+.header {
+     background-color: #470b0b00;
+     padding: 20px;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1;
+     font-size: 18px;
+   }
+
+   .header .hamburger {
+     display: inline-block;
+     margin-right: 10px;
+     cursor: pointer;
+   }
+
+   .header .hamburger span {
+     display: block;
+     width: 25px;
+     height: 3px;
+     background-color: rgb(100, 103, 147);
+     margin-bottom: 5px;
+   }
+
+   .sidebar {
+     position: fixed;
+     top: 0;
+     left: -250px;
+     width: 250px;
+     height: 100%;
+     background-color: rgba(231, 222, 222, 0);
+     color: rgb(100, 103, 147);
+     padding: 20px;
+     transition: left 0.3s ease;
+     font-size: 30px;
+   }
+
+   .sidebar ul {
+     list-style-type: none;
+     padding: 5px;
+     margin: 28px;
+   }
+
+   .sidebar.active {
+     left: 0;
+   }
+
+   /* CSS code for the nav bar with 4 features */
+
+   .tab-bar {
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     background-color: rgb(235, 232, 232);
+     color: #fff;
+     height: 60px;
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1;
+   }
+
+   .tab-item {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 10px;
+   }
+
+   .tab-item img {
+     display: block;
+     width: 60px;
+     height: 60px;
+     margin-bottom: 5px;
+   }
+
+   .tab-item span {
+     font-size: 14px;
+     color: #f1f0f0;
+   }
+
+   /* CSS code for the small plane image */
+
+   .plane-image {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 10px;
+   }
+
+   .plane-image img {
+     max-width: 60px;
+     max-height: 60px;
+   }
+
+   /* CSS styling for the flight selection page */
+   body {
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+    }
+    .flight-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .flight-card:hover {
+      background-color: #F5F5F5;
+      cursor: pointer;
+    }
+    .flight-details {
+      flex: 1;
+      padding-right: 10px;
+    }
+    .flight-price {
+      font-weight: bold;
+    }
+    .flight-locations {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .location-container {
+      display: flex;
+      align-items: center;
+      margin: 0 10px;
+    }
+    .location-label {
+      margin-right: 5px;
+    }
+    .flight-class-tabs {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .flight-class-tab {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    .flight-class-tab.active {
+      background-color: #F5F5F5;
+    }
+ </style>
+</head>
+<body>
+
+ <div class="header">
+    <div class="hamburger" onclick="toggleSidebar()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+ 
+ <div class="sidebar" id="sidebar">
+   <ul>
+     <li>Settings</li>
+   </ul>
+ </div>
+
+ <!-- Small plane image -->
+ <div class="plane-image">
+   <img src="./images/plane.png" alt="Plane Image">
+ </div>
+
+
+
+ <h1>Flight Selection</h1>
+ <div class="flight-locations">
+   <div class="location-container">
+     <span class="location-label">Departure:</span>
+     <select class="location-dropdown" id="departure-dropdown">
+       <option value="New York">New York</option>
+       <option value="London">London</option>
+       <option value="Sydney">Sydney</option>
+     </select>
+   </div>
+   <div class="location-container">
+     <span class="location-label">Destination:</span>
+     <select class="location-dropdown" id="destination-dropdown">
+       <option value="Los Angeles">Los Angeles</option>
+       <option value="Paris">Paris</option>
+       <option value="Tokyo">Tokyo</option>
+     </select>
+   </div>
+ </div>
+ <div class="flight-card">
+   <div class="flight-details">
+     <h2>Flight to Los Angeles</h2>
+     <p>Departure: New York</p>
+     <p>Destination: Los Angeles</p>
+     <p>Departure Time: 10:00 AM</p>
+     <p>Arrival Time: 1:00 PM</p>
+   </div>
+   <div class="flight-price">$200</div>
+   <div class="flight-class-tabs">
+     <div class="flight-class-tab active" onclick="selectFlightClass(this, 'economy')">Economy</div>
+     <div class="flight-class-tab" onclick="selectFlightClass(this, 'business')">Business</div>
+     <div class="flight-class-tab" onclick="selectFlightClass(this, 'first')">First Class</div>
+   </div>
+ </div>
+ <div class="flight-card">
+   <div class="flight-details">
+     <h2>Flight to Paris</h2>
+     <p>Departure: London</p>
+     <p>Destination: Paris</p>
+     <p>Departure Time: 2:00 PM</p>
+     <p>Arrival Time: 4:00 PM</p>
+   </div>
+   <div class="flight-price">$150</div>
+   <div class="flight-class-tabs">
+     <div class="flight-class-tab active" onclick="selectFlightClass(this, 'economy')">Economy</div>
+     <div class="flight-class-tab" onclick="selectFlightClass(this, 'business')">Business</div>
+     <div class="flight-class-tab" onclick="selectFlightClass(this, 'first')">First Class</div>
+   </div>
+ </div>
+ <div class="flight-card">
+   <div class="flight-details">
+     <h2>Flight to Tokyo</h2>
+     <p>Departure: Sydney</p>
+     <p>Destination: Tokyo</p>
+     <p>Departure Time: 9:00 AM</p>
+     <p>Arrival Time: 6:00 PM</p>
+   </div>
+   <div class="flight-price">$400</div>
+   <div class="flight-class-tabs">
+     <div class="flight-class-tab active" onclick="selectFlightClass(this, 'economy')">Economy</div>
+     <div class="flight-class-tab" onclick="selectFlightClass(this, 'business')">Business</div>
+     <div class="flight-class-tab" onclick="selectFlightClass(this, 'first')">First Class</div>
+   </div>
+ </div>
+ <button id="flight1-book-btn">Book Flight 1</button>
+<button id="flight2-book-btn">Book Flight 2</button>
+<button id="flight3-book-btn">Book Flight 3</button>
+<button id="next-page-btn">Proceed to Next Page</button>
+
+
+
+
+
+
+
+
+
+ <!-- Nav bar with 4 features -->
+ <div class="tab-bar">
+  <div class="tab-item">
+    <a href="profile.html"><img src="./images/profile.png" alt="Feature 1" style="width: 25px; height: 30px;"></a>
+    <span style="font-size: 10px; color: #070000;">Profile</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="featurespg.html"><img src="./images/home.png" alt="Feature 2" style="width: 50px; height: 40px;"></a>
+    <span style="font-size: 10px; color: #0e0101;">Home</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="bookFlight.html"> <img src="./images/planedo.svg.png" alt="Feature 3" style="width: 45px; height: 36px;"></a>
+    <span style="font-size: 10px; color: #070000;">Book Flight</span> <!-- Update font size -->
+  </div>
+  <div class="tab-item">
+    <a href="chatbot.html"><img src="./images/chat.png" alt="Feature 4" style="width: 47px; height: 38px;"></a>
+    <span style="font-size: 10px; color: #070000;">Chatbot</span> <!-- Update font size -->
+  </div>
+</div>
+<br><br><br><br><br><br><br>
+
+ <script>
+    function toggleSidebar() {
+      var sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
+    }
+
+
+
+    function selectFlightClass(tab, flightClass) {
+      var flightClassTabs = tab.parentElement.getElementsByClassName('flight-class-tab');
+      for (var i = 0; i < flightClassTabs.length; i++) {
+        flightClassTabs[i].classList.remove('active');
+      }
+      tab.classList.add('active');
+    }
+  function selectFlightClass(tab, flightClass) {
+    var flightClassTabs = tab.parentElement.getElementsByClassName('flight-class-tab');
+    for (var i = 0; i < flightClassTabs.length; i++) {
+      flightClassTabs[i].classList.remove('active');
+    }
+    tab.classList.add('active');
+  }
+  // Retrieve available flights from the backend API
+  fetch('http://localhost:5000/flights')
+    .then(response => response.json())
+    .then(data => {
+      // Process the retrieved flight data
+      var flightCards = document.getElementsByClassName('flight-card');
+      for (var i = 0; i < flightCards.length; i++) {
+        var flight = data[i];
+        var flightCard = flightCards[i];
+        // Update flight details
+        var flightDetails = flightCard.getElementsByClassName('flight-details')[0];
+        flightDetails.getElementsByTagName('h2')[0].innerText = flight.name;
+        flightDetails.getElementsByTagName('p')[0].innerText = 'Departure: ' + flight.source;
+        flightDetails.getElementsByTagName('p')[1].innerText = 'Destination: ' + flight.destination;
+        // Update flight price
+        var flightPrice = flightCard.getElementsByClassName('flight-price')[0];
+        flightPrice.innerText = '$200'; // You can modify this to use actual flight price data
+        // Update flight class selection
+        var flightClassTabs = flightCard.getElementsByClassName('flight-class-tab');
+        for (var j = 0; j < flightClassTabs.length; j++) {
+          flightClassTabs[j].classList.remove('active');
+        }
+        flightClassTabs[0].classList.add('active');
+      }
+    })
+    .catch(error => {
+      // Handle any errors
+      console.error('Error:', error);
+    });
+  // Book a flight when a flight card is clicked
+  var flightCards = document.getElementsByClassName('flight-card');
+  for (var i = 0; i < flightCards.length; i++) {
+    flightCards[i].addEventListener('click', function () {
+      var selectedFlightId = this.getAttribute('data-flight-id');
+      var passengerName = prompt('Please enter your name:');
+      var passengerEmail = prompt('Please enter your email:');
+      // Make a POST request to book the flight
+      fetch('http://localhost:5000/book', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          flight_id: selectedFlightId,
+          passenger_name: passengerName,
+          passenger_email: passengerEmail
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Process the booking response
+          alert(data.message);
+        })
+        .catch(error => {
+          // Handle any errors
+          console.error('Error:', error);
+        });
+    });
+  }
+    // Function to handle booking a flight
+    function bookFlight(flightId) {
+    const passengerName = prompt('Please enter your name:');
+    const passengerEmail = prompt('Please enter your email:');
+    const bookingData = {
+      flight_id: flightId,
+      passenger_name: passengerName,
+      passenger_email: passengerEmail
+    };
+    // Make a POST request to book a flight
+    fetch('http://localhost:5000/book', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bookingData)
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Process the booking response
+        alert(data.message);
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error('Error:', error);
+      });
+  }
+  // Add event listeners to the buttons
+  document.getElementById('flight1-book-btn').addEventListener('click', function () {
+    bookFlight(1); // Pass the flight ID as an argument
+  });
+  document.getElementById('flight2-book-btn').addEventListener('click', function () {
+    bookFlight(2); // Pass the flight ID as an argument
+  });
+  document.getElementById('flight3-book-btn').addEventListener('click', function () {
+    bookFlight(3); // Pass the flight ID as an argument
+  });
+  // Add event listener to the button
+  document.getElementById('next-page-btn').addEventListener('click', function () {
+    // Redirect the user to the next page
+    window.location.href = 'pymt.html';
+  });
+  </script>
+</body>
+</html>
